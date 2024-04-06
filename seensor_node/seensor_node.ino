@@ -7,13 +7,14 @@
 const size_t capacity = JSON_OBJECT_SIZE(5);
 StaticJsonDocument<capacity> sen_pkt;
 
-const char* ssid = "Airtel_9602755258";
+const char* ssid = "Airtel_9827349245";
 const char* password = "air84579";
-const char* mqtt_server = "64.227.185.29";
+const char* mqtt_server = "mqtt.thingsboard.cloud";
 const int mqtt_port = 1883; // MQTT default port
 WiFiClient espClient;
 PubSubClient client(espClient);
-const char* topic = "sensor_data";
+const char* topic = "v1/devices/me/telemetry";
+const char* mqtt_user = "eblxb7wWsG7JKSxu8JTx";
 const int device_id = 1;
 
 // Sensor data
@@ -29,7 +30,7 @@ void setup() {
 void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-    if (client.connect("ESP32Client")) {
+    if (client.connect("06b5c6c0-f419-11ee-ae87-79b197dbfe12", mqtt_user, NULL)) {
       Serial.println("connected");
     } else {
       Serial.print("failed, rc=");
@@ -113,6 +114,7 @@ void wake_routine (){
 
 void loop() {
   // put your main code here, to run repeatedly:
+
 
   // Call wake routine
   wake_routine ();

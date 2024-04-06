@@ -2,7 +2,7 @@
 
 #define DHTPIN 4
 #define DHTTYPE DHT11
-#define DHT_EN_PIN   6
+#define DHT_EN_PIN   5
 
 struct SensorData {
     int dht11_temperature;    // Temperature from DHT11 sensor
