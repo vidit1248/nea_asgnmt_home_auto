@@ -7,8 +7,11 @@
 const size_t capacity = JSON_OBJECT_SIZE(5);
 StaticJsonDocument<capacity> sen_pkt;
 
-const char* ssid = "Airtel_9827349245";
-const char* password = "air84579";
+//const char* ssid = "Airtel_9827349245";
+//const char* password = "air84579";
+const char* ssid = "Airtel_DATTEBAYOH";
+const char* password = "dattebayoh";
+
 const char* mqtt_server = "mqtt.thingsboard.cloud";
 const int mqtt_port = 1883; // MQTT default port
 WiFiClient espClient;
@@ -30,7 +33,8 @@ void setup() {
 void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-    if (client.connect("06b5c6c0-f419-11ee-ae87-79b197dbfe12", mqtt_user, NULL)) {
+    if (client.connect("36c97f90-f4bf-11ee-b150-512e216ea414", "ll8MFp5l9WpPCNRC96zO", NULL))
+    {
       Serial.println("connected");
     } else {
       Serial.print("failed, rc=");
@@ -72,9 +76,9 @@ void send_sensor_data (){
   sen_pkt["dvc_id"] = device_id;
   sen_pkt["dht_temp"] = sensor_data.dht11_temperature;
   sen_pkt["dht_hum"] = sensor_data.dht11_humidity;
-  sen_pkt["light_int"] = sensor_data.light_intensity;
-  sen_pkt["temp"] = sensor_data.temperature;
-  sen_pkt["current"] = sensor_data.current;
+  sen_pkt["light_int"] = sensor_data.light_intensity = 1500;
+  sen_pkt["temp"] = sensor_data.temperature =2048;
+  sen_pkt["current"] = sensor_data.current=3000;
   String sen_pkt_str;
   serializeJson(sen_pkt, sen_pkt_str);
 
