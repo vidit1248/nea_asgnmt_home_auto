@@ -11,14 +11,14 @@
 #define TOKEN "oK7qUQtSBzEOZ8HKKSPB"
 #define DEV_ID "d1e0dba0-fa31-11ee-80ac-39b6c0e0bad3"
 
-#define GPIO0 19
-#define GPIO2 18
+#define GPIO0 17
+#define GPIO2 16
 
 #define GPIO0_PIN 1
 #define GPIO2_PIN 2
 
 char thingsboardServer[] = "mqtt.thingsboard.cloud";
-
+int current_sensor_pin = 36;
 WiFiClient wifiClient;
 
 PubSubClient client(wifiClient);
@@ -39,11 +39,24 @@ void setup() {
   client.setCallback(on_message);
 }
 
+void sendCurrent ()
+{
+  const size_t capacity = JSON_OBJECT_SIZE(5);
+  StaticJsonDocument<capacity> sen_pkt;
+  int current = analogRead (current_sensor_pin);
+  sen_pkt["current"] = current;
+  String sen_pkt_str;
+  serializeJson(sen_pkt, sen_pkt_str);
+  client.publish("v1/devices/me/telemetry", sen_pkt_str.c_str());
+
+}
+
 void loop() {
   if ( !client.connected() ) {
     reconnect();
   }
 
+  sendCurrent ();
   client.loop();
   delay (2000);
 }
