@@ -9,8 +9,10 @@ StaticJsonDocument<capacity> sen_pkt;
 
 //const char* ssid = "Airtel_9827349245";
 //const char* password = "air84579";
-const char* ssid = "Airtel_DATTEBAYOH";
-const char* password = "dattebayoh";
+//const char* ssid = "Airtel_DATTEBAYOH";
+//const char* password = "dattebayoh";
+const char* ssid = "Mayuri";
+const char* password = "sochnabhimat";
 
 const char* mqtt_server = "mqtt.thingsboard.cloud";
 const int mqtt_port = 1883; // MQTT default port

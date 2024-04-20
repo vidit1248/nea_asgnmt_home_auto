@@ -5,14 +5,16 @@
 
 //#define WIFI_AP "Airtel_9827349245"
 //#define WIFI_PASSWORD "air84579"
-#define WIFI_AP "Airtel_DATTEBAYOH"
-#define WIFI_PASSWORD "dattebayoh"
+//#define WIFI_AP "Airtel_DATTEBAYOH"
+//#define WIFI_PASSWORD "dattebayoh"
+#define WIFI_AP "Mayuri"
+#define WIFI_PASSWORD "sochnabhimat"
 
-#define TOKEN "oK7qUQtSBzEOZ8HKKSPB"
-#define DEV_ID "d1e0dba0-fa31-11ee-80ac-39b6c0e0bad3"
+#define TOKEN "vfuivle6pqcvubvudbwu"
+#define DEV_ID "23a76a10-ff43-11ee-ac64-c1f214c97728"
 
-#define GPIO0 17
-#define GPIO2 16
+#define GPIO0 19
+#define GPIO2 18
 
 #define GPIO0_PIN 1
 #define GPIO2_PIN 2
@@ -58,7 +60,7 @@ void loop() {
 
   sendCurrent ();
   client.loop();
-  delay (2000);
+  delay (5000);
 }
 
 // The callback for when a PUBLISH message is received from the server.
@@ -162,7 +164,7 @@ void reconnect() {
     }
     Serial.print("Connecting to ThingsBoard node ...");
     // Attempt to connect (clientId, username, password)
-    if ( client.connect("d1e0dba0-fa31-11ee-80ac-39b6c0e0bad3", "oK7qUQtSBzEOZ8HKKSPB", NULL) ) {
+    if ( client.connect(DEV_ID, TOKEN, NULL) ) {
       Serial.println( "[DONE]" );
       // Subscribing to receive RPC requests
       client.subscribe("v1/devices/me/rpc/request/+");
